@@ -1,0 +1,92 @@
+Aluno: Alexandre Espíndola
+
+# Leia saldo (float) e depósito (float). Use saldo += deposito e mostre o novo saldo.
+saldo = float(input("Digite o saldo: "))
+saldo += float(input("Informe o valor do depósito: "))
+print("Seu saldo atualizado é: ", saldo)
+
+#############################################################################################
+
+# Leia orçamento (float) e gasto (float). Faça orcamento -= gasto.
+orcamento = float(input("Digite o orçamento total: "))
+orcamento -= float(input("Informe o valor do gasto: "))
+print("Seu orçamento atualizado é de R$: ", orcamento)
+
+#############################################################################################
+
+# Leia estoque (int) e vendidas (int). Atualize com -= e mostre o estoque final.
+estoque = int(input("Digite o total armazenado: "))
+estoque -= int(input("Informe o total de peças vendidas: "))
+print("Seu estoque atualizado é: ", estoque)
+
+#############################################################################################
+
+# Leia um número (int) e multiplique por 3 usando *=.
+num = int(input("Digite o número que será multiplicado por 3: "))
+num *= 3
+print("Resultado da multiplicação é: ", num)
+
+#############################################################################################
+
+# Leia horas (float) e converta para dias com /= 24.
+horas = float(input("Informe a quantidade de horas que serão convertidas em dias: "))
+horas /= 24
+print("A quantidade de dias são: ", horas)
+
+#############################################################################################
+
+# Leia minutos (int) e transforme em horas inteiras com //= 60.
+min = int(input("Digite o total de minutos a serem convertidos: "))
+min //= 60
+print("O total em horas são: ", min)
+
+#############################################################################################
+
+# Leia segundos (int) e reduza para minutos inteiros usando //= 60.
+seg = int(input("Digite o total de segundos a serem convertidos: "))
+seg //= 60
+print("O total em minutos são: ", seg)
+
+#############################################################################################
+
+# Leia um número (int), aplique n %= 2 e imprima.
+# 0 = par, 1 = ímpar
+num = int(input("Digite o número que para saber se par ou ímpar: "))
+num %= 2
+if num == 0:
+    print("O número é par.")
+else:
+    print("O número é ímpar.")
+
+#############################################################################################
+
+# Leia estoque (int). Subtraia venda com -=, depois reposição com +=, por fim %= 6.
+estoque = int(input("Digite o total do estoque: "))
+estoque -= int(input("Digite o tota de venda: "))
+print("Este é o estoque após a venda: ",estoque)
+estoque += int(input("Digite o total de reposição: "))
+print("Este é o estoque após a reposição: ", estoque)
+estoque %= 6
+print("Este é o estoque após o módulo da divisão: ", estoque)
+
+#############################################################################################
+
+# Leia tempo em segundos (int). Converta para minutos inteiros com //= 60 e depois use %= para obter segundos restantes.
+seg = int(input("Digite o total de minutos: "))
+min = seg
+min //= 60
+print("Segundos convertidos em minutos: ", min)
+segrest = seg
+segrest %= 60
+print("Segundos restantes: ", segrest)
+
+#############################################################################################
+
+# Leia metros (int). Converta para km inteiros com //= 1000 e guarde metros restantes com %= (em outra variável).
+metros = int(input("Digite o total de dias: "))
+km = metros
+km //= 1000
+print("A quantidade Km é: ", km)
+mresto = metros
+mresto %= 1000
+print("O restante em metros é: ", mresto)
