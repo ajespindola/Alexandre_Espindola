@@ -17,4 +17,4 @@ elif peso_normal:
 elif sobrepeso:
     print("Você está com sobrepeso.") 
 else:
-    print("Você está com obesidade.") 
+    print("Você está com gordo.") 
