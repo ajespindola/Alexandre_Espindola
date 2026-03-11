@@ -12,6 +12,12 @@ peso_normal = 18.5 <= imc < 25
 sobrepeso = 25 <= imc < 30
 obesidade = imc >= 30
 
+print(baixo_peso)
+print(peso_normal)
+print(sobrepeso)
+print(obesidade)
+
+""""
 i = input("Você tem certeza em ver o resultado? (S/N): ").upper()
 #print(i)
 if i == "S":
@@ -25,3 +31,4 @@ if i == "S":
         print("Você está com obesidade.")
 else:
     print("Você fez uma boa escolha!!! =D")
+"""
