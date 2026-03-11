@@ -1,9 +1,9 @@
-nome = input("Nome: ")
-peso = float(input("Peso em Kg: "))
-altura = float(input("Altura em metros: ")) 
+nome = input("Digite o nome: ")
+peso = float(input("Informe o peso em Kg: "))
+altura = float(input("Informe a altura em metros (ex 1.75): ")) 
 
 imc = peso / (altura ** 2)
-print(f"{nome}, seu IMC é: {imc:.2f}") 
+print(f"{nome} , O seu IMC é: {imc:.2f}") 
 
 baixo_peso = imc < 18.5
 peso_normal = 18.5 <= imc < 25
@@ -17,4 +17,4 @@ elif peso_normal:
 elif sobrepeso:
     print("Você está com sobrepeso.") 
 else:
-    print("Você está com gordo.") 
+    print("Você está com obesidade.") 
