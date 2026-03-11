@@ -12,11 +12,16 @@ peso_normal = 18.5 <= imc < 25
 sobrepeso = 25 <= imc < 30
 obesidade = imc >= 30
 
-if baixo_peso:           
-  print("Você está abaixo do peso.") 
-elif peso_normal:
-    print("Você está com o peso normal.") 
-elif sobrepeso:
-    print("Você está com sobrepeso.") 
+i = input("Você tem certeza em ver o resultado? (S/N): ").upper()
+#print(i)
+if i == "S":
+    if baixo_peso:           
+        print("Você está abaixo do peso.") 
+    elif peso_normal:
+        print("Você está com o peso normal.") 
+    elif sobrepeso:
+        print("Você está com sobrepeso.") 
+    else:
+        print("Você está com obesidade.")
 else:
-    print("Você está com obesidade.")
+    print("Você fez uma boa escolha!!! =D")
