@@ -1,0 +1,5 @@
+#Leia dois números decimais (float) e imprima a média.
+num1 = float(input("Digite o primeiro número: "))
+num2 = float(input("Digite o segundo número: "))
+media = (num1 + num2) / 2
+print(f"A média de {num1} e {num2} é {media}.")
