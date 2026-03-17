@@ -2,4 +2,4 @@
 min = int(input("Digite a quantidade de minutos: "))
 horas = min // 60
 resto = min % 60
-print(f"{min} minutos equivalem a {horas}h{resto:02d}.")
+print(f"{min} minutos equivalem a {horas}h{resto:02d}min.")
