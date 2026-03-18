@@ -14,3 +14,4 @@ if alvo in numeros:
     print(len(numeros))
 else:
     print("Número não consta na lista!")
+    
