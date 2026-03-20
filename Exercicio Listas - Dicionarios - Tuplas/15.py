@@ -1,0 +1,5 @@
+dias = ("segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo")
+print(dias)
+print(dias[0])
+print(dias[-1])
+print(len(dias))
