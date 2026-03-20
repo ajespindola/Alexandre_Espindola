@@ -5,4 +5,8 @@ endereco = input("Digite o endereço: ")
 
 aluno = {"nome":nome,"idade":idade,"Sexo":sexo,"Endereço":endereco}
 
+nota = float(input("Digite a nota do aluno: "))
+
+aluno["nota"] = nota
+
 print(f" {aluno}, {type(aluno)}")

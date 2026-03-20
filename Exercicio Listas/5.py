@@ -21,7 +21,4 @@ elif prior == 4:
 else:
     print("Número não encontrado!")
 
-
-
-
 print(fila)
