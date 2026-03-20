@@ -1,25 +1,25 @@
-num1 = float(input("Digite o primeiro número inteiro: "))
-num2 = float(input("Digite o segundo número inteiro: "))
-num3 = float(input("Digite o terceiro número inteiro: "))
+num1 = float(input("Digite a primeira nota: "))
+num2 = float(input("Digite a segunda nota: "))
+num3 = float(input("Digite a terceira nota: "))
 
-lista = [num1,num2,num3]
-print(lista)
+lista = [num1, num2, num3]
+print(f"Números iniciais: {lista}")
 
-media = float(sum(lista)/3)
-print(media)
+media = sum(lista) / len(lista) # Usa o tamanho da lista para ter flexibilidade
+print(f"Média inicial: {media:.2f}")
 
-if num1 < num2 and num1 < num3:
-    menor = float(input(f"A nota {num1} é a menor, digite a nova nota: "))
-    lista[0] = menor
-elif num2 < num1 and num2 < num3:
-    menor = float(input(f"A nota {num2} é a menor, digite a nova nota: "))
-    lista[1] = menor
-elif num3 < num1 and num3 < num2:
-    menor = float(input(f"A nota {num3} é a menor, digite a nova nota: "))
-    lista[2] = menor
+# Menor número no menor indice
+menor_valor = min(lista)
+indice_menor = lista.index(menor_valor)
 
-lista.sort()
-media = float(sum(lista)/3)
+# Novo valor para o menor número
+nova_nota = float(input(f"O número {menor_valor} é o menor. Digite um novo valor para ele: "))
 
-print(lista)
-print(media)
+# substituir o menor valor pelo novo valor
+lista[indice_menor] = nova_nota
+
+lista.sort() # ordena a lista em ordem crescente
+media_atualizada = sum(lista) / len(lista)
+
+print(f"Números atualizados e ordenados: {lista}")
+print(f"Nova média: {media_atualizada:.2f}")
