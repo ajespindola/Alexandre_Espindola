@@ -8,27 +8,15 @@ imc = peso / (altura ** 2)
 print(f"{nome} , O seu IMC é: {imc:.2f}") 
 
 baixo_peso = imc < 18.5
-peso_normal = 18.5 <= imc < 25
-sobrepeso = 25 <= imc < 30
-obesidade = imc >= 30
+peso_normal = imc < 25
+sobrepeso = imc < 30
+obesidade = imc >+ 30
 
-print(baixo_peso)
-print(peso_normal)
-print(sobrepeso)
-print(obesidade)
-
-""""
-i = input("Você tem certeza em ver o resultado? (S/N): ").upper()
-#print(i)
-if i == "S":
-    if baixo_peso:           
-        print("Você está abaixo do peso.") 
-    elif peso_normal:
-        print("Você está com o peso normal.") 
-    elif sobrepeso:
-        print("Você está com sobrepeso.") 
-    else:
-        print("Você está com obesidade.")
+if baixo_peso:           
+   print("Você está abaixo do peso.") 
+elif peso_normal:
+    print("Você está com o peso normal.") 
+elif sobrepeso:
+    print("Você está com sobrepeso.") 
 else:
-    print("Você fez uma boa escolha!!! =D")
-"""
+    print("Você está com obesidade.")
