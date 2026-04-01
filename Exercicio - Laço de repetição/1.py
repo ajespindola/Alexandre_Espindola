@@ -32,3 +32,4 @@ if quantidade_compras > 0:
     print(f"Valor médio das compras: R${valor_medio:.2f}")
 else:
     print("Nenhuma compra foi realizada.")
+    
