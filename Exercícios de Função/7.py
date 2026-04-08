@@ -7,7 +7,7 @@ def palindromo(palavra):
 
 var = input("Digite uma palavra: ")
 
-if palindromo(var):
+if fp.palindromo(var):
     print(f"'{var}' é um palíndromo.")
 else:
     print(f"'{var}' não é um palíndromo.")
