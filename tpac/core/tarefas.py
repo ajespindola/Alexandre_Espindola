@@ -1,8 +1,11 @@
 from data.data_manager import salvar_dados
 
-def adicionar_tarefa(dados: dict, usuario: str, chave: str, titulo: str):
+def adicionar_tarefa(dados: dict, usuario: str, chave: str, titulo: str, descricao: str = "", prioridade: str = "media", prazo: str = ""):
     dados[usuario][chave].append({
         "titulo": titulo,
+        "descricao": descricao,
+        "prioridade": prioridade,
+        "prazo": prazo,
         "concluida": False,
         "passos": []
     })

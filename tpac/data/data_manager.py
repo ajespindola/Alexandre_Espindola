@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def conectar():
     """
     Abre uma conexão com o banco MySQL.
@@ -20,8 +21,8 @@ def conectar():
         host=os.getenv("DB_HOST", "localhost"),
         user=os.getenv("DB_USER", "root"),
         password=os.getenv("DB_PASSWORD", ""),
-        database=os.getenv("DB_NAME", "tpac_db"),
-        port=int(os.getenv("DB_PORT", "3306"))
+        database=os.getenv("DB_NAME", "tea_db"),
+        port=int(os.getenv("DB_PORT", "3306")),
     )
 
 
@@ -55,41 +56,48 @@ def carregar_dados() -> Dict[str, Any]:
         nome = usuario["nome"]
 
         dados[nome] = {
-            "preferencias": {
-                "estilo_instrucao": usuario["estilo_instrucao"]
-            },
+            "preferencias": {"estilo_instrucao": usuario["estilo_instrucao"]},
             "tarefas_diarias": [],
-            "tarefas_educacionais": []
+            "tarefas_educacionais": [],
         }
 
-        cursor.execute("""
-            SELECT id, titulo, concluida, tipo
+        cursor.execute(
+            """
+            SELECT id, titulo, descricao, prioridade, prazo, concluida, tipo
             FROM tarefas
             WHERE usuario_id = %s
             ORDER BY id
-        """, (usuario["id"],))
+        """,
+            (usuario["id"],),
+        )
         tarefas = cursor.fetchall()
 
         for tarefa in tarefas:
+            prazo = tarefa["prazo"].strftime("%Y-%m-%d") if tarefa["prazo"] else ""
             tarefa_dict = {
                 "titulo": tarefa["titulo"],
+                "descricao": tarefa.get("descricao") or "",
+                "prioridade": tarefa.get("prioridade") or "media",
+                "prazo": prazo,
                 "concluida": bool(tarefa["concluida"]),
                 "passos": []
-            }
+        }       
 
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT texto, concluido
                 FROM passos
                 WHERE tarefa_id = %s
                 ORDER BY ordem
-            """, (tarefa["id"],))
+            """,
+                (tarefa["id"],),
+            )
             passos = cursor.fetchall()
 
             for passo in passos:
-                tarefa_dict["passos"].append({
-                    "texto": passo["texto"],
-                    "concluido": bool(passo["concluido"])
-                })
+                tarefa_dict["passos"].append(
+                    {"texto": passo["texto"], "concluido": bool(passo["concluido"])}
+                )
 
             dados[nome][tarefa["tipo"]].append(tarefa_dict)
 
@@ -121,39 +129,50 @@ def salvar_dados(dados: Dict[str, Any]) -> None:
         cursor.execute("SET FOREIGN_KEY_CHECKS = 1")
 
         for nome, info_usuario in dados.items():
-            estilo = info_usuario.get("preferencias", {}).get("estilo_instrucao", "direto")
+            estilo = info_usuario.get("preferencias", {}).get(
+                "estilo_instrucao", "direto"
+            )
 
-            cursor.execute("""
+            cursor.execute(
+                """
                 INSERT INTO usuarios (nome, estilo_instrucao)
                 VALUES (%s, %s)
-            """, (nome, estilo))
+            """,
+                (nome, estilo),
+            )
 
             usuario_id = cursor.lastrowid
 
             for tipo in ["tarefas_diarias", "tarefas_educacionais"]:
                 for tarefa in info_usuario.get(tipo, []):
                     cursor.execute("""
-                        INSERT INTO tarefas (usuario_id, tipo, titulo, concluida)
-                        VALUES (%s, %s, %s, %s)
-                    """, (
+                        INSERT INTO tarefas (usuario_id, tipo, titulo, descricao, prioridade, prazo, concluida)
+                        VALUES (%s, %s, %s, %s, %s, NULLIF(%s, ''), %s)
+                        """, (
                         usuario_id,
                         tipo,
                         tarefa.get("titulo", ""),
+                        tarefa.get("descricao", ""),
+                        tarefa.get("prioridade", "media"),
+                        tarefa.get("prazo", ""),
                         bool(tarefa.get("concluida", False))
                     ))
 
                     tarefa_id = cursor.lastrowid
 
                     for ordem, passo in enumerate(tarefa.get("passos", []), start=1):
-                        cursor.execute("""
+                        cursor.execute(
+                            """
                             INSERT INTO passos (tarefa_id, texto, concluido, ordem)
                             VALUES (%s, %s, %s, %s)
-                        """, (
-                            tarefa_id,
-                            passo.get("texto", ""),
-                            bool(passo.get("concluido", False)),
-                            ordem
-                        ))
+                        """,
+                            (
+                                tarefa_id,
+                                passo.get("texto", ""),
+                                bool(passo.get("concluido", False)),
+                                ordem,
+                            ),
+                        )
 
         conexao.commit()
 
